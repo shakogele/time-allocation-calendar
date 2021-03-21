@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# Design specifications for calendar APP
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Converting Array into Object
 
-## Available Scripts
+As allocated slots are comming in array from backend, I thought it would be better to convert array into object, 
+as filtering happens on click calendar day it would be quite expensive operation, so once I got data from backend
+I converted it into following structure as data arrives on frontend:
 
-In the project directory, you can run:
+## timezone issue
 
-### `npm start`
+Second consideration was the timezone offset, as user relies on browser's date and UTZ/GMT (which can be easily changed on front from 
+user's PC if PC is not synchronised to automatically set datetime/timezone offset) I thought it might be more reliable to retrive current user's timezone from API as user logs into system. Because we do not have user login I implemented a temporary solution to get currentUser's timezone
+from publicly available API 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## setting default timezone 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Each time user calls `new Date` function it generates a current PC datetime so I created a custom function to set current datetime with timezone;
 
-### `npm test`
+## API specifications
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+I created a swagger openAPI specifications and postmen collection file with enviroment variable which can be found here
 
-### `npm run build`
+## Testing
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+I created integration tests using postman and implemented nodemon library as dev dependency also changed package.json scripts to 
+run nodemon tests which can be found here
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## App itself
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+I uploaded app at AWS S3 for demonstration purposes and it can be found [http://localhost:3000](http://calendar-app-shakogele.s3-website.eu-central-1.amazonaws.com/)
 
-### `npm run eject`
+## How to run locally
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+if you want to run this project just pull this repo and run `npm install` then `cd calendar` and `npm start` the project will run on development mode
+and it can be open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## How to test
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+As I said this project contains only integration tests which tests the API integration. You can run `npm test` to test the project
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## How to build
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+If you want the production verion run `npm run build` which will generate the build folder and then upload it on web server.
