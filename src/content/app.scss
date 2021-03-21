@@ -11,3 +11,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+html, 
+body {
+  font-size: 62.5%;
+}
+.app {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+// Notifications
+.notification-container{
+  font-size: 1.3rem;
+}

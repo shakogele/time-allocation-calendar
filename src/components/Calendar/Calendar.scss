@@ -1,0 +1,153 @@
+@import './TimeSlots/TimeSlots.scss';
+
+.event{
+    background-color: white;
+    border: 1px solid rgba(77, 80, 85, 0.1);
+    border-radius: 0.5rem;
+    display: flex;
+    flex:1 1 auto;
+    flex-direction: row;
+    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.08);
+    flex-wrap: wrap;
+    max-width: 90rem;
+    min-height: 60rem;
+    max-height: 60rem;
+    justify-content: center;
+    &__mentor{
+        flex: 1;
+        font-size: 1.6rem;
+        padding: 3rem;
+        border-right: 1px solid rgba(77, 80, 85, 0.1);
+        &-name{
+            color: rgba(77, 80, 85, 0.6);
+            font-weight: bold;
+        }
+        &-title{
+            margin-top: 1rem;
+            font-size: 2.8rem;
+            line-height: 3.2rem;
+            font-weight: bold;
+            color: #4d5055;
+        }
+        &-hours{
+            margin-top: 2.5rem;
+            color: rgba(77, 80, 85, 0.6);
+            display: flex;
+            .clock-icon{
+                margin-right: 1rem;
+            }
+        }
+    }
+    &__calendar {
+        flex: 1;
+        padding: 3rem 1rem 1rem 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        &-title{
+            display: block;
+            font-size: 2rem;
+            color: #4d5055;
+            font-weight: bold;
+            text-align: left;
+        }
+        &-button{
+            padding: 2rem;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 1rem;
+            color: rgba(77, 80, 85, 0.6);
+            cursor: pointer;
+            color: rgb(0, 162, 255);
+            &:hover{
+                background-color: rgba(0, 162, 255, 0.15);
+            }
+            &--active{
+            }
+        }
+        &-nav{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 1rem 0;
+            &-buttons{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+        &__header {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+            font-size: 2rem;
+            color: #4d5055;
+        }
+        &__body {
+            color: #4d5055;
+            &-weekdays{
+                display: flex;
+                justify-content: space-between;
+                border-top: 1px solid #ccc;
+                border-bottom: 1px solid #ccc;
+                &__day{
+                    font-size: 1.8rem;
+                    flex: 1;
+                    padding: 1rem;
+                    text-align: center;
+                }
+            }
+            &-weekcells{
+                &__row{
+                    display: flex;
+                    justify-content: space-between;
+                    // border-bottom: 1px solid #ccc;
+                    &-cell{
+                        flex: 1;
+                        display: flex;
+                        flex-direction: column;
+                        text-align: center;
+                        justify-content: center;
+                        width: 4rem;
+                        height: 4rem;
+                        border-radius: 70%;
+                        margin: 0.3rem;
+                        .number{
+                            font-size: 1.6rem;
+                        }
+                        .timeSlots{
+                            font-size: 1rem;
+                        }
+                        .bg{
+                            visibility: hidden;
+                        }
+                        &--disabled{
+                            color: rgba(77, 80, 85, 0.6);
+                        }
+                        &--enabled{
+                            background-color: rgba(0, 162, 255, 0.05);
+                            color: teal;
+                            cursor: pointer;
+                        }
+                        &--currentday{
+                            display: inline-block;
+                            width: 0.5rem;
+                            height: 0.5rem;
+                            background-color: teal;
+                            margin: 0 auto;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &-allocations{
+        display: flex;
+    }
+}
