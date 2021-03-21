@@ -80,5 +80,15 @@
                 background-color: red;
             }
         }
+        &__success{
+            margin-top: 1rem;
+            padding:1rem;
+            border-radius: 1rem;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+        }
     }
 }

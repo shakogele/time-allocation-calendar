@@ -1,15 +1,19 @@
-import { SET_TIME_SLOTS } from "../actions/actionTypes";
-    
+import { SET_USER_TIMEZONE } from "../actions/actionTypes";
+
 const initialState = {
-    timeSlots: []
+    tz: {
+        name: "Pacific/Honolulu",
+        gmt: "(GMT-10:00) Hawaii Time",
+        shortGmt: "GMT-10"
+    }
 };
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_TIME_SLOTS:
+        case SET_USER_TIMEZONE:
             return {
                 ...state,
-                timeSlots: action.payload
+                tz: action.payload
             };
         default:
             return state;

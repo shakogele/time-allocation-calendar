@@ -1,6 +1,7 @@
 {
   "name": "calendar",
   "version": "0.1.0",
+  "description": "Calendar interface for call session allocations",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",
@@ -45,5 +46,7 @@
   },
   "devDependencies": {
     "redux-logger": "^3.0.6"
-  }
+  },
+  "author": "Shalva Gelenidze",
+  "license": "ISC"
 }

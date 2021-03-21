@@ -15,16 +15,16 @@ const TimeSlots = ({slots, currentDate}) => {
             const year = currentDate.getFullYear();
             const month = currentDate.getMonth();
             const day = currentDate.getDate();
-            const timingArray = generateTiming(slots[year][month][day]);
+            const timingArray = generateTiming(slots[year][month][day], currentDate);
             setSlotItems(timingArray)
         }
     }, [currentDate, slots]);
 
     const allocationClickHandler = (time, index) => {
         if(time.available){
-            setSelectedSlotIndex(index);
+            selectedSlotIndex !== index ? setSelectedSlotIndex(index) : setSelectedSlotIndex(null);
         }else{
-            createNotification('error', 'This time slot is already taken, please choose another one!')
+            createNotification('error', `This time slot is ${time.status ? time.status : 'Unavailable'}, please choose another one!`)
         }
     };
 
@@ -43,11 +43,11 @@ const TimeSlots = ({slots, currentDate}) => {
                                 onClick={() => allocationClickHandler(time, index)}
                                 >
                                 <span className="timeslots__item-interval">{time.interval}</span>
-                                <span className={`timeslots__item-availability`}>{time.available ? 'available' : 'allocated'}</span>
+                                <span className={`timeslots__item-availability`}>{time.status}</span>
                                 {
-                                    selectedSlotIndex === index 
+                                    selectedSlotIndex === index
                                         ? (
-                                            <ReservationForm time={currentDate} hours={index} />
+                                            <ReservationForm time={time} hours={index} currentTime={currentDate}/>
                                         )
                                         : null
                                 }

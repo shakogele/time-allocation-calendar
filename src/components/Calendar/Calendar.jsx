@@ -3,6 +3,7 @@ import { format, addMonths, subMonths, startOfWeek, addDays, startOfMonth, endOf
     endOfWeek, isSameMonth, isSameDay } from "date-fns";
 import { FaChevronLeft, FaChevronRight, FaClock } from 'react-icons/fa';
 import TimeSlots from './TimeSlots/TimeSlots';
+import TimeZoneSelector from '../TimeZoneSelector/TimeZoneSelector';
 
 import { compareTwoDates } from '../../utils/helpers';
 
@@ -143,14 +144,13 @@ const Calendar = ({timeSlots, mentor}) => {
                         {generateDays()}
                     </div>
                 </div>
-                <div className="event__calendar__footer"></div>
+                <div className="event__calendar__footer">
+                    <TimeZoneSelector />
+                </div>
             </div>
             <div className="event__allocations">
                 <TimeSlots slots={timeSlots} currentDate={selectedDate} />
             </div>
-            {/* <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)}>
-                
-            </Dialog> */}
         </div>
     )
 }

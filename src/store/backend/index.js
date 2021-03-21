@@ -23,6 +23,7 @@ export const getTimeSlotsBackend = (mentorId) => {
 }
 
 export const alocateSlotBackend = (allocation) => {
+    console.log({allocation})
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             try{

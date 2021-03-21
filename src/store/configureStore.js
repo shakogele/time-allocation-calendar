@@ -4,10 +4,12 @@ import logger from "redux-logger";
 
 import uiReducer from "./reducers/ui";
 import calendarReducer from "./reducers/calendar";
+import tzReducer from "./reducers/tz";
 
 const rootReducer = combineReducers({
     ui: uiReducer,
-    calendar: calendarReducer
+    calendar: calendarReducer,
+    tz: tzReducer
 });
 
 let composeEnhancers = compose;

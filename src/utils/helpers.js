@@ -23,12 +23,16 @@ export const addAllocationToSlotsObject = (slotsObject, element) => {
     }
 }
   
-export const generateTiming = (times) => {
+export const generateTiming = (times, datetime) => {
+    const dt = new Date();
+    const currentHours = dt > datetime ? dt.getHours() : -1;
+    const availableTimes = times ? times.filter(time => time > currentHours) : [];
     const timing = [];
     for(let i=0; i<24; i++){
         timing.push({
             interval: intToTime(i) + ':00 - ' + intToTime(i+1)+':00',
-            available: !(times && times.includes(i))
+            available: !availableTimes.includes(i) && i > currentHours,
+            status: times && times.includes(i) ? 'allocated' : i > currentHours ? 'available' : 'unavailable' 
         });
     }
     return timing;

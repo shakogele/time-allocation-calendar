@@ -3,7 +3,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const Loader = ({isLoading}) => {
-    console.log({isLoading})
     return (
         isLoading 
         ? (

@@ -37,7 +37,7 @@ export const alocateSlot = (allocation, callback) => {
                 console.log({err})
             })
     }
-}
+};
 
 const setTimeSlots = (timeSlotsArray) => {
     return {
