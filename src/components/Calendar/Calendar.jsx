@@ -41,13 +41,6 @@ const Calendar = ({timeSlots, mentor}) => {
         setSelectedDate(day);
     };
 
-    // const timeSlotsOnSpecificDay = (day) => {
-    //     const slots = timeSlots && timeSlots[day.getFullYear()] 
-    //     && timeSlots[day.getFullYear()][day.getMonth()] 
-    //     && timeSlots[day.getFullYear()][day.getMonth()][day.getDate()];
-    //     return slots && slots.length ? slots.length + ` meeting${slots.length>1 ? 's' : ''}` : null
-    // }
-
     const startDate = startOfWeek(state.currentMonth, {weekStartsOn: 1});
     const dayFormat = "eee";
     const days = [];

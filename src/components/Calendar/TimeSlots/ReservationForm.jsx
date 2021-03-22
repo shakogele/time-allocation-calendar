@@ -23,9 +23,13 @@ const ReservationForm = ({time, onAlocateSlot, hours, currentTime}) => {
                 title: 'Your Allocation has been confirmed!',
                 datetime: `Date: ${format(currentTime, 'eeee, MMMM d hh:mm')}`,
                 comment: `Comment: ${comment}`
-            })
+            });
         }
     }, [time]);
+
+    const onSubmit = () => {
+        setUserMessage(null);
+    };
 
     return (
         <div className="timeslots__reservation-container"  onClick={e => e.stopPropagation()}>
@@ -43,7 +47,7 @@ const ReservationForm = ({time, onAlocateSlot, hours, currentTime}) => {
                     )
                     : userMessage 
                         ?(
-                            <div className="timeslots__reservation-container__success" onClick={() => setUserMessage(null)}>
+                            <div className="timeslots__reservation-container__success" onClick={onSubmit}>
                                 <div className="timeslots__reservation-container__success-message">{userMessage.title}</div>
                                 <div className="timeslots__reservation-container__success-date">{userMessage.datetime}</div>
                                 <div className="timeslots__reservation-container__success-comment">{userMessage.comment}</div>

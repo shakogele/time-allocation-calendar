@@ -24,7 +24,7 @@ const TimeSlots = ({slots, currentDate}) => {
         if(time.available){
             selectedSlotIndex !== index ? setSelectedSlotIndex(index) : setSelectedSlotIndex(null);
         }else{
-            createNotification('error', `This time slot is ${time.status ? time.status : 'Unavailable'}, please choose another one!`)
+            createNotification('error', `This time slot is ${time.status ? time.status : 'Unavailable'}, please choose another slot!`)
         }
     };
 
@@ -47,7 +47,7 @@ const TimeSlots = ({slots, currentDate}) => {
                                 {
                                     selectedSlotIndex === index
                                         ? (
-                                            <ReservationForm time={time} hours={index} currentTime={currentDate}/>
+                                            <ReservationForm time={time} hours={index} currentTime={currentDate} />
                                         )
                                         : null
                                 }
