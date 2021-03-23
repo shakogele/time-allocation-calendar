@@ -32,4 +32,5 @@ const mapDispatchToProps = (dispatch) => {
         onGetTimeSlots: () => dispatch(getTimeSlots())
     }
 }
+
 export default connect(null, mapDispatchToProps)(App);

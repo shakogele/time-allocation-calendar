@@ -9,14 +9,21 @@ const TimeSlots = ({slots, currentDate}) => {
 
     const [sloItems, setSlotItems] = useState([]);
     const [selectedSlotIndex, setSelectedSlotIndex] = useState();
-    
+    const [currentDay, setCurrentDay] = useState();
+
     useEffect(() => {
         if(currentDate){
             const year = currentDate.getFullYear();
             const month = currentDate.getMonth();
             const day = currentDate.getDate();
             const timingArray = generateTiming(slots[year][month][day], currentDate);
-            setSlotItems(timingArray)
+            setCurrentDay(prevState => {
+                if(prevState !== format(currentDate, 'eeee, MMMM d')){
+                    setSelectedSlotIndex(null)
+                }
+                return format(currentDate, 'eeee, MMMM d')
+            });
+            setSlotItems(timingArray);
         }
     }, [currentDate, slots]);
 

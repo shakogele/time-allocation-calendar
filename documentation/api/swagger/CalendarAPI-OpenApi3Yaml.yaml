@@ -1,0 +1,244 @@
+openapi: 3.0.0
+info:
+  title: CalendarAPI
+  contact: {}
+  version: '1.0'
+servers:
+- url: http://example.com
+  variables: {}
+paths:
+  /mentors/{mentorId}/agenda:
+    get:
+      tags:
+      - Misc
+      summary: List TIme Slots
+      operationId: ListTImeSlots
+      parameters:
+      - name: mentorId
+        in: path
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 1
+      - name: Accept
+        in: header
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: application/json
+      - name: Content-Type
+        in: header
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: application/json
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /{APIVersion}/mentors/{mentorId}/agenda:
+    post:
+      tags:
+      - Misc
+      summary: Post Allocation
+      operationId: PostAllocation
+      parameters:
+      - name: mentorId
+        in: path
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 1
+      - name: Accept
+        in: header
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: application/json
+      - name: APIVersion
+        in: path
+        required: true
+        style: simple
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostAllocationRequest'
+            example:
+              datetimeGMT: Sun Mar 21 2021 22:29:00 GMT+0400 (Georgia Standard Time)
+              comment: User Comment Here!
+        required: true
+      responses:
+        '409':
+          description: Conflict
+          headers: {}
+          content: {}
+        '400':
+          description: Bad Request
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError1'
+        '201':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+        '401':
+          description: Unauthorized
+          headers: {}
+          content: {}
+        '500':
+          description: Internal Server Error
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerError1'
+      deprecated: false
+  /{APIVersion}/user-time-zone:
+    get:
+      tags:
+      - Misc
+      summary: Get Current Users TimeZone
+      operationId: GetCurrentUsersTimeZone
+      parameters:
+      - name: Accept
+        in: header
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: application/json
+      - name: Content-Type
+        in: header
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: application/json
+      - name: APIVersion
+        in: path
+        required: true
+        style: simple
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success1'
+        '401':
+          description: Unauthorized
+          headers: {}
+          content: {}
+        '500':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerError1'
+      deprecated: false
+components:
+  schemas:
+    PostAllocationRequest:
+      title: PostAllocationRequest
+      required:
+      - datetimeGMT
+      - comment
+      type: object
+      properties:
+        datetimeGMT:
+          type: string
+        comment:
+          type: string
+      example:
+        datetimeGMT: Sun Mar 21 2021 22:29:00 GMT+0400 (Georgia Standard Time)
+        comment: User Comment Here!
+    Error:
+      title: Error
+      required:
+      - status
+      - message
+      - details
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: string
+      example:
+        status: 402
+        message: Validation Error.
+        details: []
+    ClientError1:
+      title: ClientError1
+      required:
+      - error
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/Error'
+      example:
+        error:
+          status: 402
+          message: Validation Error.
+          details: []
+    Success:
+      title: Success
+      required:
+      - date_time
+      type: object
+      properties:
+        date_time:
+          type: string
+      example:
+        date_time: 2020-10-24 17:10:09 +0200
+    ServerError1:
+      title: ServerError1
+      required:
+      - error
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/Error'
+      example:
+        error:
+          status: 502
+          message: Bad Gateway.
+          details: []
+    Success1:
+      title: Success1
+      required:
+      - user_timezone
+      type: object
+      properties:
+        user_timezone:
+          type: string
+      example:
+        user_timezone: Asia/Tbilisi
+tags:
+- name: Misc
+  description: ''

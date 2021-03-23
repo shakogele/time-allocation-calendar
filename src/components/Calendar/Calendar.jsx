@@ -76,8 +76,15 @@ const Calendar = ({timeSlots, mentor}) => {
                             `event__calendar__body-weekcells__row-cell 
                             ${ compareTwoDates(currentDate, day) 
                                 ? 'event__calendar__body-weekcells__row-cell--disabled' 
-                                : isSameMonth(day, monthStart) ? 'event__calendar__body-weekcells__row-cell--enabled' : ''
-                            }`
+                                : isSameMonth(day, monthStart) ? 'event__calendar__body-weekcells__row-cell--enabled' 
+                                : ''
+                            }
+                            ${
+                                isSameDay(day, selectedDate) 
+                                    ? 'event__calendar__body-weekcells__row-cell--selected'
+                                    : ''
+                            }
+                            `
                         }
                         key={day}
                         onClick={() => isSameMonth(cloneDay, monthStart) ? onDateClick(cloneDay) : null}
@@ -138,11 +145,11 @@ const Calendar = ({timeSlots, mentor}) => {
                     </div>
                 </div>
                 <div className="event__calendar__footer">
-                    <TimeZoneSelector />
+                    {/* <TimeZoneSelector /> */}
                 </div>
             </div>
             <div className="event__allocations">
-                <TimeSlots slots={timeSlots} currentDate={selectedDate} />
+                <TimeSlots slots={timeSlots} currentDate={selectedDate}/>
             </div>
         </div>
     )

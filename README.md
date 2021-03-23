@@ -3,31 +3,43 @@
 ## Converting Array into Object
 
 As allocated slots are comming in array from backend, I thought it would be better to convert array into object, 
-as filtering happens on click calendar day it would be quite expensive operation, so once I got data from backend
+as filtering happens on click calendar day it would be quite expensive operation on each user click, so once I got data from backend
 I converted it into following structure:
 
-![Data from Backend](/documentation/assets/backend.png)
-![Object on Frontend](/documentation/assets/frontend.png)
+From Backend -------------------------------------------- On Frontend ---------------------------------------------
+
+![Data from Backend](/documentation/assets/backend.png)  ![Object on Frontend](/documentation/assets/frontend.png)
 
 ## Timezone issue
 
-Second consideration was the timezone offset, as user relies on browser's date and UTZ/GMT (which can be easily changed on front from 
-user's PC if PC is not synchronised to automatically set datetime/timezone offset) I thought it might be more reliable to retrive current user's timezone from API as user logs into system. Because we do not have user login I implemented a temporary solution to get currentUser's timezone
-from publicly available API 
+Second consideration was the timezone offset, as user relies on browser's datetime and UTZ/GMT (which can be easily changed on front from 
+user's PC if PC is not synchronised to automatically set datetime/timezone offset) I thought it might be more reliable to retrive current user's timezone from API as user logs into system based on User IP. Because we do not have user login - I thought it would be better to get User TimeZone
+as separate API request.
 
 ## Setting default timezone 
 
-Each time user calls `new Date` function it generates a current PC datetime so I created a custom function to set current datetime with timezone;
+Each time user calls `new Date()` function it generates a current Browser datetime so I created a custom function to set current datetime with timezone;
+
+## ERROR Boundary 
+
+Implemented ErrorBoundary Component to catch component error and wrapped App Component in it;
+
+
+## Styling 
+
+I implemented rem feature and tried to make APP responsive and as mobile friendly as possible; In project I used SCSS because I think for big projects
+while working in a team SCSS and BEM methodology is good approach.
 
 ## API specifications
 
 ![Swagger OpenAPI Specifications](/documentation/api/swagger) and ![Postmen Collection file with enviroment](/documentation/api/postman) were created
 to see the API requirements and documentation.
-If you prefer to use postman you can import the collection file and environment file into your postman.
+If you prefer to use postman you can import the collection file and environment file into your postman, check requests and test them. or you can find
+published API documentation ![here](https://documenter.getpostman.com/view/1335114/TzCFhr5f) 
 
 ## Testing
 
-I created ![integration tests](/documentation/api/tests) using postman and implemented nodemon library as a dev dependency, changed package.json scripts to run nodemon tests.
+I wrote couple of ![integration tests](/documentation/api/postman) with schema checking and request status/body checking functionality, using postman and implemented newman library as a dev dependency, changed package.json scripts to run tests.
 
 ## App itself
 
@@ -40,7 +52,8 @@ and visit [http://localhost:3000](http://localhost:3000).
 
 ## How to test
 
-This project contains only integration tests to test with API integration. You can run `npm test` to run tests.
+This project contains only integration tests to test with API integration. You can run `npm test-post-deploy` to run postman API tests. As Backend APIs
+are not available for testing it will echo out an error messages for 2 API endpoints for 1 endpoint (GET mentor/agenda) it should pass.
 
 ## How to build
 

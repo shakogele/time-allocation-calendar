@@ -13,7 +13,6 @@ const ReservationForm = ({time, onAlocateSlot, hours, currentTime}) => {
     const onAllocateHandler = () => {
         const currentMinutes = (new Date()).getMinutes();
         currentTime.setHours(hours, currentMinutes);
-
         onAlocateSlot({comment, date_time: currentTime.toString()}, () => createNotification('success',`You allocated call at ${currentTime.toString()} with following message: ${comment}`));
     };
 

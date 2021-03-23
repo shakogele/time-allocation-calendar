@@ -23,7 +23,6 @@ export const getTimeSlotsBackend = (mentorId) => {
 }
 
 export const alocateSlotBackend = (allocation) => {
-    console.log({allocation})
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             try{
@@ -38,6 +37,15 @@ export const alocateSlotBackend = (allocation) => {
             }catch(err){
                 reject(err)
             }
+        }, TIMEOUT_TIMING)
+    })
+}
+
+export const getTimeZoneBackend = () => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+
+            resolve({time_zone: 'Asia/Tbilisi'})
         }, TIMEOUT_TIMING)
     })
 }
