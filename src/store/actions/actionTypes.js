@@ -1,5 +1,8 @@
 export const UI_START_LOADING = "UI_START_LOADING";
 export const UI_STOP_LOADING = "UI_STOP_LOADING";
 
+export const TZ_START_LOADING = "TZ_START_LOADING";
+export const TZ_STOP_LOADING = "TZ_STOP_LOADING";
+
 export const SET_TIME_SLOTS = "SET_TIME_SLOTS";
 export const SET_USER_TIMEZONE = "SET_USER_TIMEZONE";

@@ -1,4 +1,4 @@
 
-export { uiStartLoading, uiStopLoading } from "./ui";
+export { uiStartLoading, uiStopLoading, tzStartLoading, tzStopLoading } from "./ui";
 export { getTimeSlots, alocateSlot } from './calendar';
-export { setUserTimeZone } from './tz'
+export { setUserTimeZone, getUserTimeZone } from './tz'

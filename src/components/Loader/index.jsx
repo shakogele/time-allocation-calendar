@@ -2,9 +2,9 @@ import React from 'react';
 
 import { connect } from 'react-redux';
 
-const Loader = ({isLoading}) => {
+const Loader = ({isLoading, isTzLoading}) => {
     return (
-        isLoading 
+        isLoading || isTzLoading 
         ? (
             <div className="loader">
                 <div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
@@ -15,7 +15,8 @@ const Loader = ({isLoading}) => {
 
 const mapStateToProps = state => {
     return {
-        isLoading: state.ui.isLoading
+        isLoading: state.ui.isLoading,
+        isTzLoading: state.ui.tzIsLoading
     }
 }
 

@@ -22,12 +22,21 @@ as separate API request.
 
 ## Setting default timezone 
 
-Each time user calls `new Date()` function it generates a current Browser datetime so I created a custom function to set current datetime with timezone;
+Each time user calls `new Date()` function it generates a current Browser datetime as browser datetime is not reliable I decided to call an API and retrive current user timezone from public API `https://worldtimeapi.org/api/ip` so I created a custom function to set current datetime with timezone;
+
+## Saving Allocations
+
+As no backend API is ready I decided to store current user's allocations into Browsers LocalStorage. so each time user creates a new allocation,
+it is stored in localstorage and then it gets loaded & merged into current timeslots received from backend.
+
+## Redux
+
+I used Redux state to store all appropriate info - like - userTimezone and timeSlots. Timeslots are stored into redux once user gets data from backend 
+at that moment current user slots are retrived from localstorage and merged with backend data.
 
 ## ERROR Boundary 
 
 Implemented ErrorBoundary Component to catch component error and wrapped App Component in it;
-
 
 ## Styling 
 

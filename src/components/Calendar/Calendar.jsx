@@ -145,7 +145,7 @@ const Calendar = ({timeSlots, mentor}) => {
                     </div>
                 </div>
                 <div className="event__calendar__footer">
-                    {/* <TimeZoneSelector /> */}
+                    <TimeZoneSelector />
                 </div>
             </div>
             <div className="event__allocations">

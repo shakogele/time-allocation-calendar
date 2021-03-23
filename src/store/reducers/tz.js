@@ -1,11 +1,7 @@
 import { SET_USER_TIMEZONE } from "../actions/actionTypes";
 
 const initialState = {
-    tz: {
-        name: "Pacific/Honolulu",
-        gmt: "(GMT-10:00) Hawaii Time",
-        shortGmt: "GMT-10"
-    }
+    tz: null
 };
 
 const reducer = (state = initialState, action) => {

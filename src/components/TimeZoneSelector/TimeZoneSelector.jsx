@@ -1,13 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { FaGlobeAmericas, FaCaretDown, FaCaretUp } from 'react-icons/fa';
+import { listTimeZones } from 'timezone-support';
 
 import { connect } from 'react-redux';
 import { setUserTimeZone } from '../../store/actions';
 
-import timezones from './timezones.json';
-
 const TimeZoneSelector = ({tz, onChangeUserTimeZone}) => {
     
+    const timezones = listTimeZones();
     const dropDownRef = useRef();
     
     const [search, setSearch] = useState('');
@@ -25,7 +25,7 @@ const TimeZoneSelector = ({tz, onChangeUserTimeZone}) => {
 
     const filteredTzs = timezones.filter(tz => {
         if(search.length){
-            return tz.name.toLowerCase().includes(search.toLowerCase())
+            return tz.toLowerCase().includes(search.toLowerCase())
         }else{
             return true
         }
@@ -40,7 +40,7 @@ const TimeZoneSelector = ({tz, onChangeUserTimeZone}) => {
         <div className="time-zone">
             <div className="time-zone__header" onClick={() => setDropDownVisible(true)} ref={dropDownRef}>
                 <span><FaGlobeAmericas /></span>
-                <span className="time-zone__header-title">{tz.name}</span>
+                <span className="time-zone__header-title">{tz}</span>
                 <span>{dropdownVisible ? <FaCaretUp /> : <FaCaretDown /> }</span>
             </div>
             <div id="overflow" style={{ visibility: dropdownVisible ? 'visible' : 'hidden' }} onClick={() => setDropDownVisible(false)}>
@@ -62,7 +62,7 @@ const TimeZoneSelector = ({tz, onChangeUserTimeZone}) => {
                         {
                             filteredTzs.map(tz => {
                                 return (
-                                    <div key={tz.name} className="time-zone__dropdown-item" onClick={() => timezoneClickHandler(tz)}>{tz.name}</div>
+                                    <div key={tz} className="time-zone__dropdown-item" onClick={() => timezoneClickHandler(tz)}>{tz}</div>
                                 )
                             })
                         }

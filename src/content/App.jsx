@@ -6,14 +6,15 @@ import ErrorBoundary from './ErrorBoundary';
 import Calendar from '../components/Calendar/Calendar';
 import Loader from '../components/Loader';
 
-import {getTimeSlots } from '../store/actions/index';
+import { getTimeSlots, getUserTimeZone } from '../store/actions/index';
 
 import 'react-notifications/lib/notifications.css';
 
-const App = ({onGetTimeSlots}) => {
+const App = ({onGetTimeSlots, onGetUserTimeZone}) => {
 
     useEffect(() => {
         onGetTimeSlots();
+        onGetUserTimeZone();
     }, [onGetTimeSlots])
 
     return (
@@ -29,7 +30,8 @@ const App = ({onGetTimeSlots}) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onGetTimeSlots: () => dispatch(getTimeSlots())
+        onGetTimeSlots: () => dispatch(getTimeSlots()),
+        onGetUserTimeZone: () => dispatch(getUserTimeZone())
     }
 }
 

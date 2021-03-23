@@ -1,15 +1,25 @@
 import { SET_USER_TIMEZONE } from "../actions/actionTypes";
-import { uiStartLoading, uiStopLoading } from './index';
+import { tzStartLoading, tzStopLoading } from './index';
+import { getTimeZoneBackend } from '../backend';
 
-export const setUserTimeZone = (tz) => {
+export const getUserTimeZone = () => {
     return (dispatch) => {
-        dispatch(uiStartLoading());
-        dispatch(setTimeZone(tz))
-        dispatch(uiStopLoading());
+        dispatch(tzStartLoading());
+        getTimeZoneBackend()
+            .then(tz => {
+                if(tz && tz.timezone){
+                    dispatch(setUserTimeZone(tz.timezone));
+                }
+                dispatch(tzStopLoading());
+            })
+            .catch(err => {
+                console.log({err})
+                dispatch(tzStopLoading());
+            })
     }
 }
 
-const setTimeZone = (timezone) => {
+export const setUserTimeZone = (timezone) => {
     return {
         type: SET_USER_TIMEZONE,
         payload: timezone

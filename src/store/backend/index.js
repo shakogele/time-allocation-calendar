@@ -20,7 +20,7 @@ export const getTimeSlotsBackend = (mentorId) => {
             }
             return calendarObject;
         })
-}
+};
 
 export const alocateSlotBackend = (allocation) => {
     return new Promise((resolve, reject) => {
@@ -39,13 +39,9 @@ export const alocateSlotBackend = (allocation) => {
             }
         }, TIMEOUT_TIMING)
     })
-}
-
+};
+  
 export const getTimeZoneBackend = () => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-
-            resolve({time_zone: 'Asia/Tbilisi'})
-        }, TIMEOUT_TIMING)
-    })
-}
+    return fetch("https://worldtimeapi.org/api/ip")
+    .then(response => response.json())
+};
