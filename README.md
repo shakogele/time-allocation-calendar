@@ -6,9 +6,13 @@ As allocated slots are comming in array from backend, I thought it would be bett
 as filtering happens on click calendar day it would be quite expensive operation on each user click, so once I got data from backend
 I converted it into following structure:
 
-From Backend -------------------------------------------- On Frontend ---------------------------------------------
+From Backend -------------------------------------------- 
 
-![Data from Backend](/documentation/assets/backend.png)  ![Object on Frontend](/documentation/assets/frontend.png)
+![Data from Backend](/documentation/assets/backend.png) 
+
+On Frontend ---------------------------------------------
+
+![Object on Frontend](/documentation/assets/frontend.png)
 
 ## Timezone issue
 
@@ -35,7 +39,7 @@ while working in a team SCSS and BEM methodology is good approach.
 ![Swagger OpenAPI Specifications](/documentation/api/swagger) and ![Postmen Collection file with enviroment](/documentation/api/postman) were created
 to see the API requirements and documentation.
 If you prefer to use postman you can import the collection file and environment file into your postman, check requests and test them. or you can find
-published API documentation ![here](https://documenter.getpostman.com/view/1335114/TzCFhr5f) 
+published API documentation [here](https://documenter.getpostman.com/view/1335114/TzCFhr5f) 
 
 ## Testing
 
