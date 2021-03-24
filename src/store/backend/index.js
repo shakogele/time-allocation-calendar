@@ -44,4 +44,12 @@ export const alocateSlotBackend = (allocation) => {
 export const getTimeZoneBackend = () => {
     return fetch("https://worldtimeapi.org/api/ip")
     .then(response => response.json())
+    .then(resp => {
+        const currentTimeZone = localStorage.getItem('CareerFoundry:userTimezone');
+        if(!currentTimeZone){
+            localStorage.setItem('CareerFoundry:userTimezone', resp.timezone)
+        }
+        return resp.timezone;
+
+    })
 };

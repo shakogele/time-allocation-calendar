@@ -3,7 +3,7 @@ import { FaGlobeAmericas, FaCaretDown, FaCaretUp } from 'react-icons/fa';
 import { listTimeZones } from 'timezone-support';
 
 import { connect } from 'react-redux';
-import { setUserTimeZone } from '../../store/actions';
+import { changeUserTimeZone } from '../../store/actions';
 
 const TimeZoneSelector = ({tz, onChangeUserTimeZone}) => {
     
@@ -20,7 +20,7 @@ const TimeZoneSelector = ({tz, onChangeUserTimeZone}) => {
             left: headerElementPosition.left,
             top: headerElementPosition.top + 40
         })
-    }, []);
+    }, [dropdownVisible]);
 
 
     const filteredTzs = timezones.filter(tz => {
@@ -38,7 +38,7 @@ const TimeZoneSelector = ({tz, onChangeUserTimeZone}) => {
 
     return (
         <div className="time-zone">
-            <div className="time-zone__header" onClick={() => setDropDownVisible(true)} ref={dropDownRef}>
+            <div className="time-zone__header" onClick={() => setDropDownVisible(dropDownRef.current.getBoundingClientRect())} ref={dropDownRef}>
                 <span><FaGlobeAmericas /></span>
                 <span className="time-zone__header-title">{tz}</span>
                 <span>{dropdownVisible ? <FaCaretUp /> : <FaCaretDown /> }</span>
@@ -82,7 +82,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onChangeUserTimeZone: (tz) => dispatch(setUserTimeZone(tz)),
+        onChangeUserTimeZone: (tz) => dispatch(changeUserTimeZone(tz)),
     }
 };
 

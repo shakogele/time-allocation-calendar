@@ -1,6 +1,8 @@
 .time-zone{
     font-size: 1.6rem;
-    width: 50%;
+    width: 80%;
+    display: flex;
+    justify-content:flex-start;
     &__header{
         padding: 1rem;
         border-radius: 2rem;
